@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>購物車</h2>
+    {% if session['cart']|length == 0 %}
+        <p>購物車是空的。</p>
+    {% else %}
+        <ul>
+            {% for item_id, item_info in session['cart'].items() %}
+                <li>
+                    名稱：{{ item_info['name'] }} - 價格：${{ item_info['price'] }} - 數量：{{ item_info['quantity'] }}
+                    <a href="{{ url_for('remove_from_cart', item_id=item_id) }}">移除</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <p>總金額：${{ total_price() }}</p>
+        <a href="{{ url_for('checkout') }}">結帳</a>
+    {% endif %}
+{% endblock %}

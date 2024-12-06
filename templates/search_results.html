@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>搜索結果：{{ query }}</h2>
+    {% if items %}
+        <ul>
+            {% for item in items %}
+                <li>
+                    <a href="{{ url_for('item_detail', item_id=item.id) }}">{{ item.name }}</a> - 價格：${{ item.price }} - 庫存：{{ item.quantity }}
+                    <a href="{{ url_for('add_to_cart', item_id=item.id) }}">加入購物車</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>沒有找到符合條件的商品。</p>
+    {% endif %}
+{% endblock %}

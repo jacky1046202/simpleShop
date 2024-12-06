@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>{{ item.name }} 的詳情</h2>
+    <p>價格：${{ item.price }}</p>
+    <p>庫存：{{ item.quantity }}</p>
+    <a href="{{ url_for('add_to_cart', item_id=item.id) }}">加入購物車</a>
+    <a href="{{ url_for('edit_item', item_id=item.id) }}">編輯商品</a>
+    <a href="{{ url_for('delete_item', item_id=item.id) }}">刪除商品</a>
+{% endblock %}
